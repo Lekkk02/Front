@@ -1,0 +1,224 @@
+
+
+/* Estilos generales */
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos de la tabla */
+
+.tabla {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+
+.tabla th, .tabla td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.tabla th {
+  background-color: #eee;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Estilos del contenido */
+.fondo{
+  background-color: #430606;
+  margin-top: 20px;
+  border-radius: 6px;
+  max-width: 900px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.contenido {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.img-usuario {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #cc7c7c;
+  margin-right: 20px;
+}
+
+.img-juego {
+  width: 120px;
+  height: 120px;
+  background: #cc7c7c;
+  margin-right: 20px;
+}
+
+.texto-fecha {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.texto-actividad {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.texto-actividad b {
+  color: rgb(156, 25, 25);
+}
+
+.texto-comentario {
+  margin-bottom: 10px;
+}
+
+/* Estilos para pantallas pequeñas */
+
+@media only screen and (max-width: 600px) {
+  .contenido {
+    padding: 10px;
+  }
+  
+  .img-usuario, .img-juego {
+    display: none;
+  }
+  
+  .texto-actividad {
+    margin-left: 0;
+  }
+  
+  .texto-comentario {
+    margin-left: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.tabla {
+  margin-top: 12px;
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.fondo {
+  position: absolute;
+  left: 1%;
+  right: 1%;
+  top: 36%;
+  margin-top: 10px;
+  background: #6d0b0b;
+  box-shadow: 0px 1px 5px 0.5px black;
+  border-radius: 5px;
+}
+
+.contenido {
+  max-width: 100%;
+  padding: 8px;
+  margin: 5px 5px 15px 5px;
+  top: 3%;
+  bottom: 55%;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+
+.img-usuario {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  left: 10px;
+  top: 30px;
+  background: #cc7c7c;
+}
+
+.img-juego{
+  position: relative;
+  width: 120px;
+  height: 120px;
+  left: 10px;
+  top: 30px;
+  background: #cc7c7c;
+}
+
+.texto-fecha {
+  margin-left: 10px;
+  width: 190px;
+  height: 12px;
+  left: 15px;
+  top: 10px;
+  font-weight: bold;
+}
+
+.texto-actividad {
+  position:relative;
+  left: 180px;
+  bottom: 5rem;
+  max-height: 90px;
+  max-width: 500px;
+  font-weight: bold;
+}
+
+.texto-actividad b {
+  color: rgb(156, 25, 25);
+}
+
+.texto-actividad p {
+  max-width: 600px;
+}
+
+.texto-comentario {
+  position: relative;
+  max-height: 80px;
+  max-width: 700px;
+  left: 180px;
+  bottom: 65px;
+  color: rgb(0, 0, 0);
+}
+
+*/
+

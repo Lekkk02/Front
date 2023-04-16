@@ -1,0 +1,178 @@
+.navbar .navbar-brand {
+    color: rgb(231, 24, 24);
+    font-weight: bold;
+}
+
+.navbar{
+    background-color: rgb(37, 3, 3);
+}
+
+.navbar .nav-item{
+    font-size: 18px;
+
+}
+
+.navbar-nav .nav-item .nav-link {
+
+    /* 
+        ----------PENDIENTE----------
+    
+    Para cambiar color de los nav-item en la navbar
+    
+    */
+
+}
+
+
+
+.navbar .navbar-toggler{
+    position: relative;
+    border-width: 0px;
+    left: -2px;
+}
+
+.navbar .navbar-toggler-icon {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    width: 30px;
+
+}
+
+#game_icon{
+    position: relative;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+#login-icon{
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+}
+
+#login-icon:hover{
+    color: rgb(167, 167, 167);
+}
+
+#user-icon{
+  color: white;
+}
+
+.jumbotron{
+    margin-top: 0px;
+    background-image: linear-gradient(rgb(37, 3, 3), rgb(231, 24, 24));
+    /*background-image: url("../images/background-banner.png"); */
+    background-size: cover;
+    border-radius: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    background-color: rgb(37, 3, 3);
+}
+.jumbotron .container {
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    font-weight: 700;
+}
+
+.material-symbols-outlined {
+    position: relative;
+    bottom: -6px;
+    left: -6px;
+    font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+#login-btn{
+    background-image: linear-gradient( rgb(37, 3, 3), rgb(231, 24, 24));
+    border: none;
+}
+
+#login-btn:hover{
+    background-image: linear-gradient( rgb(20, 1, 1), rgb(172, 16, 16));
+
+}
+@media (min-width:300px){
+    .modal-dialog {
+        max-width: 400px;
+      }
+      .modal-dialog .modal-content {
+        padding: 2rem;
+      }
+}
+
+.form-label{
+    font-style: italic;
+
+}
+
+.modal-header .modal-title{
+    font-weight: bold;
+    font-size: 22px;
+    left: 10px;
+}
+
+.close{
+    position: relative;
+    top: -20px;
+    right: -20px;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 400px;
+    }
+    .modal-dialog .modal-content {
+      padding: 2rem;
+    }
+  }
+  .modal-header .close {
+    margin-top: -1.5rem;
+  }
+  
+  .form-title {
+    margin: -2rem 0rem 2rem;
+  }
+  
+  .btn-round {
+    border-radius: 3rem;
+  }
+  
+  .delimiter {
+    padding: 1rem;
+  }
+  
+  .social-buttons .btn {
+    margin: 0 0.5rem 1rem;
+  }
+  
+  .signup-section {
+    padding: 0.3rem 0rem;
+  }
+
+  .modal-footer p{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .form-control:focus {
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid rgb(231, 24, 24);;
+    outline: 0;
+    box-shadow: none;
+
+}
+
+.botonMostrarPassw{
+  margin-bottom: 20px;
+}

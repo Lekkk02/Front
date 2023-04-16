@@ -1,0 +1,139 @@
+
+.user-profile {
+    margin: 0 auto;
+    margin-top: 50px;
+    box-shadow:1px 2px 4px rgba(5, 5, 5, 0.2);
+    border-radius: 10px;
+    background-color: #dfd8d8;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    padding: 30px 20px;
+  }
+
+
+
+  .nameuser{
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .correo{
+    margin-bottom: 25px;
+  }
+
+  .list-group-item{
+    background-color: rgb(255, 255, 255);
+  }
+
+
+  .list-group-item h5 {
+    font-size: 18px;
+    color: #850606;
+    font-weight: bold;
+  }
+
+  .list-group-item p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  
+  .btn-primary {
+    background-color: #921010;
+    border-color: #921010;
+  }
+  
+  .btn-primary:hover {
+    background-color:#770b0b;
+  }
+  
+  .btn-primary:focus,
+  .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  }
+  
+  .rounded-circle {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .img-thumbnail {
+    border: none;
+    padding: 0;
+  }
+
+  
+  
+  @media (min-width: 768px) {
+ 
+  
+    .list-group-item {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .user-profile-edit-btn {
+    margin-top: 20px;
+  }
+  
+
+
+
+
+
+
+
+
+
+/* 
+
+.image-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+  
+  .img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+
+.user-profile-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+
+.user-profile-card {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    padding: 30px 20px;
+  }
+  
+  
+  
+  .user-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .user-profile-edit-btn {
+    margin-top: 20px;
+  } */
+  
