@@ -4,7 +4,9 @@ import Axios from "axios";
 function ShowGames() {
   let [games, setGames] = useState([]);
   useEffect(() => {
-    Axios.get("/api/games/getAllGames")
+    Axios.get(
+      "https://backend-production-6d58.up.railway.app/api/games/getAllGames"
+    )
       .then((res) => {
         console.log(res.data);
         setGames(res.data);

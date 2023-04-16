@@ -209,7 +209,7 @@ function Insertgame() {
                 // Post data to Node and Express server:
                 localStorage.setItem("imgNombre", files.files[0].name);
 
-                fetch("http://localhost:8081/upload", {
+                fetch("https://backend-production-6d58.up.railway.app/upload", {
                   method: "POST",
                   body: formData, // Payload is formData object
                 })
@@ -218,16 +218,19 @@ function Insertgame() {
                 let url = localStorage.getItem("imgNombre");
                 let mon = false;
 
-                axios.post("/api/games/addGame", {
-                  titulo: titulo.current.value,
-                  flanzamiento: fechaLanzamiento.current.value,
-                  urlImagen: url,
-                  descripcion: descripcion.current.value,
-                  puntuacion: puntuacione.current.value,
-                  genero: categoria.current.value,
-                  precio: precio.current.value,
-                  edadrating: edad.current.value,
-                });
+                axios.post(
+                  "https://backend-production-6d58.up.railway.app/api/games/addGame",
+                  {
+                    titulo: titulo.current.value,
+                    flanzamiento: fechaLanzamiento.current.value,
+                    urlImagen: url,
+                    descripcion: descripcion.current.value,
+                    puntuacion: puntuacione.current.value,
+                    genero: categoria.current.value,
+                    precio: precio.current.value,
+                    edadrating: edad.current.value,
+                  }
+                );
               } catch (error) {
                 console.log(error);
               }

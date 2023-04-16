@@ -16,10 +16,10 @@ function UserProfile() {
   let [fechaRegistro, setfechaRegistro] = useState("");
   let [contribuciones, setContribuciones] = useState();
   console.log("ID DE USUARIO: ", id);
-  
+
   useEffect(() => {
     axios
-      .get(`/api/users/${id}`)
+      .get(`https://backend-production-6d58.up.railway.app/api/users/${id}`)
       .then((res) => {
         let arr = res.data;
         setusername(arr.username);
@@ -33,7 +33,9 @@ function UserProfile() {
 
   useEffect(() => {
     axios
-      .get(`/api/contribucion/getUserContrib/${id}`)
+      .get(
+        `https://backend-production-6d58.up.railway.app/api/contribucion/getUserContrib/${id}`
+      )
       .then((res) => {
         setContribuciones(res.data.length);
       })

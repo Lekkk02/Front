@@ -13,7 +13,9 @@ function Registro() {
   const [errorMsg, setErrorMsg] = useState("");
   let auth;
   let CheckRegg = async () => {
-    const usersData = await axios.get("/api/users/getAllUsers");
+    const usersData = await axios.get(
+      "https://backend-production-6d58.up.railway.app/api/users/getAllUsers"
+    );
     let status = true;
     let match = usersData.data.forEach((element) => {
       if (element.correo.toLowerCase() === email.toLowerCase()) {
@@ -40,11 +42,14 @@ function Registro() {
     console.log("AUTH IS ", res);
     if (res) {
       ev.preventDefault();
-      axios.post("/api/users/addUser", {
-        username: nickname,
-        password: password,
-        correo: email,
-      });
+      axios.post(
+        "https://backend-production-6d58.up.railway.app/api/users/addUser",
+        {
+          username: nickname,
+          password: password,
+          correo: email,
+        }
+      );
       navigate("/", { replace: true });
       console.log("Se registró la cuenta");
     } else {
@@ -57,18 +62,21 @@ function Registro() {
     }
   };
 
-/*Codigo para verificar si una contraseña posee por lo menos un número, una letra mayus, una letra minus, y un caracter especial. Fuente: Confía (sten) */
-  const isStrongPassword = p => p.search(/^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$)(?=.*[;:\.,!¡\?¿@#\$%\^&\-_+=\(\)\[\]\{\}])).{8,20}$/)!=-1;
+  /*Codigo para verificar si una contraseña posee por lo menos un número, una letra mayus, una letra minus, y un caracter especial. Fuente: Confía (sten) */
+  const isStrongPassword = (p) =>
+    p.search(
+      /^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$)(?=.*[;:\.,!¡\?¿@#\$%\^&\-_+=\(\)\[\]\{\}])).{8,20}$/
+    ) != -1;
 
   function ShowPassword() {
     var tipo1 = document.getElementById("password");
     var tipo2 = document.getElementById("confirm-password");
-    if(tipo1.type == 'password' && tipo2.type == 'password'){
-      tipo1.type = 'text'
-      tipo2.type = 'text'
+    if (tipo1.type == "password" && tipo2.type == "password") {
+      tipo1.type = "text";
+      tipo2.type = "text";
     } else {
-      tipo1.type = 'password'
-      tipo2.type = 'password'
+      tipo1.type = "password";
+      tipo2.type = "password";
     }
   }
 
@@ -77,9 +85,18 @@ function Registro() {
       <div className="row justify-content-center">
         <div className="col-md-5">
           <div className="card">
-          <Link className="pingas" to="/" id="link-index">
-                    <img style={{width:"6%", height:"auto",marginLeft:"20px",marginTop:"20px"}} src={require(`./assests/img/hogar.png`)} alt="..."/>
-                  </Link>
+            <Link className="pingas" to="/" id="link-index">
+              <img
+                style={{
+                  width: "6%",
+                  height: "auto",
+                  marginLeft: "20px",
+                  marginTop: "20px",
+                }}
+                src={require(`./assests/img/hogar.png`)}
+                alt="..."
+              />
+            </Link>
             <img
               src={images.gp2}
               className="mx-auto"
@@ -141,14 +158,35 @@ function Registro() {
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
-                <input type="button"
-                       name="wf"
-                       className="botonMostrarPassw"
-                       onClick={ShowPassword}
-                       value="Mostrar Contraseña" />
+                  <input
+                    type="button"
+                    name="wf"
+                    className="botonMostrarPassw"
+                    onClick={ShowPassword}
+                    value="Mostrar Contraseña"
+                  />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
-                  {isStrongPassword(password) && isStrongPassword(repassword) && password.length>7 ? <button style={{marginTop:"15px"}} className="btn btn-primary">Crear cuenta</button> : <p style={{padding:"10px"}}><b>Asegúrate que tu contraseña cumpla los siguientes requisitos:</b><br/> Una letra mayúscula. <br/> Una letra minúscula. <br/> Un número. <br/> Un carácter especial. <br/>Que posea entre 8 y 16 caractéres.</p>}
+                  {isStrongPassword(password) &&
+                  isStrongPassword(repassword) &&
+                  password.length > 7 ? (
+                    <button
+                      style={{ marginTop: "15px" }}
+                      className="btn btn-primary"
+                    >
+                      Crear cuenta
+                    </button>
+                  ) : (
+                    <p style={{ padding: "10px" }}>
+                      <b>
+                        Asegúrate que tu contraseña cumpla los siguientes
+                        requisitos:
+                      </b>
+                      <br /> Una letra mayúscula. <br /> Una letra minúscula.{" "}
+                      <br /> Un número. <br /> Un carácter especial. <br />
+                      Que posea entre 8 y 16 caractéres.
+                    </p>
+                  )}
                 </div>
               </form>
             </div>

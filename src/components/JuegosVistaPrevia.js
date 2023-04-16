@@ -7,7 +7,9 @@ function VistaPrevia() {
   let [games, setGames] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/games/getAllGames")
+      .get(
+        "https://backend-production-6d58.up.railway.app/api/games/getAllGames"
+      )
       .then((res) => {
         console.log(res.data);
         setGames(res.data);

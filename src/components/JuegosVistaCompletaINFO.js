@@ -28,7 +28,9 @@ const JuegosVistaCompletaINFO = () => {
 
   useEffect(() => {
     const getGameData = async () => {
-      const { data } = await axios.get(`/api/games/${id}`);
+      const { data } = await axios.get(
+        `https://backend-production-6d58.up.railway.app/api/games/${id}`
+      );
       setTitle(data.nombre);
       setprice(data.precio);
       setdescription(data.descripcion);
@@ -77,7 +79,9 @@ const JuegosVistaCompletaINFO = () => {
   };
 
   const getContr = async () => {
-    const data = await axios.get(`/api/contribucion/getGameContrib/${id}`);
+    const data = await axios.get(
+      `https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`
+    );
     return data;
   };
   const checkUser = async () => {
@@ -98,12 +102,15 @@ const JuegosVistaCompletaINFO = () => {
       ev.preventDefault();
       console.log("Contribución enviada");
       let calificacion = parseInt(inputCalif.current.value);
-      await axios.post("/api/contribucion/addContrib", {
-        calif: calificacion,
-        comentario: inputComentario.current.value,
-        idusuario: idusuario,
-        idJuego: id,
-      });
+      await axios.post(
+        "https://backend-production-6d58.up.railway.app/api/contribucion/addContrib",
+        {
+          calif: calificacion,
+          comentario: inputComentario.current.value,
+          idusuario: idusuario,
+          idJuego: id,
+        }
+      );
       window.location.reload();
     };
     const AuthContribucion = () => {
@@ -183,7 +190,9 @@ const JuegosVistaCompletaINFO = () => {
     useEffect(() => {
       //const Data = async () => {
       /*const { data } = await*/ axios
-        .get(`/api/contribucion/getGameContrib/${id}`)
+        .get(
+          `https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`
+        )
         .then((res) => {
           console.log(res.data);
           setContribucion(res.data);

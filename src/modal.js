@@ -2,7 +2,13 @@ import axios from "axios";
 import { Collapse } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import { CloseButton } from "react-bootstrap";
-import { Link, Navigate, redirect, useNavigate, useRouteLoaderData } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  redirect,
+  useNavigate,
+  useRouteLoaderData,
+} from "react-router-dom";
 import "../src/assests/styles/navbar.css";
 
 /*function modalForm(){
@@ -37,25 +43,24 @@ import "../src/assests/styles/navbar.css";
 
 let InicioSesion = [
   {
-    "correo": "",
-    "intentos": 0,
-    "bloqueo": false
+    correo: "",
+    intentos: 0,
+    bloqueo: false,
   },
   {
-    "correo": "",
-    "intentos": 0,
-    "bloqueo": false
-  }
-]
+    correo: "",
+    intentos: 0,
+    bloqueo: false,
+  },
+];
 
-let usuario= {
-  "correo": "",
-  "intentos": 0,
-  "bloqueo": false
-}
+let usuario = {
+  correo: "",
+  intentos: 0,
+  bloqueo: false,
+};
 
-let CorreosBloqueados=[]
-
+let CorreosBloqueados = [];
 
 function Modal() {
   const navigate = useNavigate();
@@ -83,24 +88,31 @@ function Modal() {
   }
 
   const checkUser = async () => {
-    const res = await axios.get("/api/users/getAllUsers", {
-      responseType: "json",
-    });
+    const res = await axios.get(
+      "https://backend-production-6d58.up.railway.app/api/users/getAllUsers",
+      {
+        responseType: "json",
+      }
+    );
     const match = res["data"].find((element) => {
       return element.correo.toLowerCase() === email.toLowerCase();
     });
     if (match) {
       console.log("Found User!");
       if (match.password === password) {
-        if(InicioSesion.find(usuario => usuario.correo === email)) {
-          usuario = InicioSesion.find(usuario => usuario.correo === email);
-          console.log("el correo ingresado se encuentra en el listado iniciosesion")
+        if (InicioSesion.find((usuario) => usuario.correo === email)) {
+          usuario = InicioSesion.find((usuario) => usuario.correo === email);
+          console.log(
+            "el correo ingresado se encuentra en el listado iniciosesion"
+          );
           console.log(InicioSesion);
-          if(usuario.bloqueo === true) {
-            window.alert("Cuenta bloqueada, diríjase a la sección: recuperar contraseña para desbloquear")
-            console.log("La cuenta ingresada se encuentra bloqueada")
+          if (usuario.bloqueo === true) {
+            window.alert(
+              "Cuenta bloqueada, diríjase a la sección: recuperar contraseña para desbloquear"
+            );
+            console.log("La cuenta ingresada se encuentra bloqueada");
             return false;
-          }else{
+          } else {
             usuario.intentos = 0;
             console.log("inicio satisfactorio1");
             console.log(usuario);
@@ -108,58 +120,62 @@ function Modal() {
             localStorage.setItem("role", match.rol);
             window.location.reload();
             return true;
-           
           }
-
-        }else{
+        } else {
           console.log("inicio satisfactorio2");
           console.log(usuario);
           localStorage.setItem("idusuario", match.idusuario);
           localStorage.setItem("role", match.rol);
           window.location.reload();
           return true;
-          
         }
-
       } else {
         console.log("Wrong Password!");
-       
+
         /*Verificaciones para validar intentos fallidos */
-        if(InicioSesion.find(usuario => usuario.correo === email)) {
-          let usuario = InicioSesion.find(usuario => usuario.correo === email);
-          if(usuario.intentos=== 1) {
-            usuario.intentos=2;
-            console.log("intentos fallidos: 2/3")
+        if (InicioSesion.find((usuario) => usuario.correo === email)) {
+          let usuario = InicioSesion.find(
+            (usuario) => usuario.correo === email
+          );
+          if (usuario.intentos === 1) {
+            usuario.intentos = 2;
+            console.log("intentos fallidos: 2/3");
             console.log(usuario);
-            window.alert("Clave ingresada incorrecta. Un intento fallido más y bloqueará su cuenta")
-          } else if(usuario.intentos ===2) {
-            usuario.intentos=3;
-            usuario.bloqueo=true;
+            window.alert(
+              "Clave ingresada incorrecta. Un intento fallido más y bloqueará su cuenta"
+            );
+          } else if (usuario.intentos === 2) {
+            usuario.intentos = 3;
+            usuario.bloqueo = true;
             CorreosBloqueados.push(usuario.correo);
             localStorage.setItem("correosbloqueados", CorreosBloqueados);
-            console.log("estos son los correos bloqueados: "+CorreosBloqueados)
+            console.log(
+              "estos son los correos bloqueados: " + CorreosBloqueados
+            );
 
             console.log("Tu cuenta ha sido bloqueada");
             console.log(usuario);
-            window.alert("Su cuenta ha sido bloqueada, diríjase a la sección: recuperar contraseña para desbloquear");
+            window.alert(
+              "Su cuenta ha sido bloqueada, diríjase a la sección: recuperar contraseña para desbloquear"
+            );
           } else if (usuario.bloqueo === true) {
             console.log("Esta cuenta se encuentra bloqueada");
             console.log("Ir al menú recuperar contraseña para desbloquear");
-            window.alert("Cuenta bloqueada, diríjase a la sección: recuperar contraseña para desbloquear");
-            console.log(InicioSesion)
+            window.alert(
+              "Cuenta bloqueada, diríjase a la sección: recuperar contraseña para desbloquear"
+            );
+            console.log(InicioSesion);
           }
-        }else{
-          usuario= {
-            "correo": email,
-            "intentos": 1,
-            "bloqueo": false
-          }
+        } else {
+          usuario = {
+            correo: email,
+            intentos: 1,
+            bloqueo: false,
+          };
           InicioSesion.push(usuario);
           console.log(usuario);
           window.alert("Clave ingresada incorrecta");
         }
-
-
 
         return false;
       }
