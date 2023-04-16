@@ -36,9 +36,7 @@ function SansionarUsuario() {
 
   function StrikeUser() {
     axios
-      .get(
-        `https://backend-production-6d58.up.railway.app/api/users/strikes/${idUser}`
-      )
+      .get(`/api/users/strikes/${idUser}`)
       .then((res) => alert("Strike añadido", res))
       .catch((err) => alert("Hubo un error", err));
   }
