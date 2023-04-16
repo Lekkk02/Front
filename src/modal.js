@@ -262,7 +262,7 @@ function Modal() {
           <div className="modal-footer modal-footer-centered">
             <a href="/Recuperacion">¿Olvidaste tu contraseña?</a>
 
-            <a href="/Registro">¿No tienes una cuenta? Regístrate aquí</a>
+            <a href="/registro">¿No tienes una cuenta? Regístrate aquí</a>
           </div>
         </div>
       </div>
