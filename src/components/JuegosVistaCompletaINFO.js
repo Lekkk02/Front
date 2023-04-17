@@ -121,9 +121,10 @@ const JuegosVistaCompletaINFO = () => {
       ev.preventDefault();
       console.log("Contribución enviada");
       let calificacion = parseInt(inputCalif.current.value);
+      let comment = inputComentario.current.value;
       await axios.post("https://backend-production-6d58.up.railway.app/api/contribucion/addContrib", {
         calif: calificacion,
-        comentario: inputComentario.current.value,
+        comentario: comment,
         idusuario: idusuario,
         idJuego: id,
       });
@@ -282,10 +283,6 @@ const JuegosVistaCompletaINFO = () => {
           })}
         </div>
 
-        <button>Presione para tener contribucion</button>
-        <button onClick={NoTenerContribucion}>
-          Presione para no tener contribucion
-        </button>
       </div>
     );
   };
