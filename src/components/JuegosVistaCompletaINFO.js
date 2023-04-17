@@ -162,7 +162,7 @@ const JuegosVistaCompletaINFO = () => {
                 placeholder="Escriba una contribucion!"
                 required
               />
-              <select name="calif" id="califSelect"  required>
+              <select name="calif" id="califSelect" ref={inputCalif}  required>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
