@@ -92,15 +92,6 @@ export default class principal extends Component {
           </div>
         </div>
 
-
-
-        <button onClick={adminRole}>Presiona para ser Admin</button>
-        <button onClick={userRole} className="mt-3">
-          Presiona para ser usuario
-        </button>
-        <button onClick={noRole} className="mt-3">
-          Presiona para no tener rol
-        </button>
       </div>
     );
   }
