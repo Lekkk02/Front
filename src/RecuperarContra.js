@@ -32,7 +32,6 @@ const RecuperarContrasena = () => {
             password = match.password;
             contra = password;
             console.log('La contraseña es: ', contra);
-            document.formulario.contra.value = contra;
             return true;
         }else{
             return false;
