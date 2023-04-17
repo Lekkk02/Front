@@ -16,11 +16,7 @@ const RecuperarContrasena = () => {
         emailjs.init("hQiGy33WLjt9KtwHm");
     }
 
-    function VerificarBloqueo(){
-        let CorreosBloqueados=[]
-        CorreosBloqueados = localStorage.getItem("correosbloqueados");
-        console.log("Hola que hace, estos son los correos bloqueados"+CorreosBloqueados);
-    }
+   
 
     Emailsender();
 
@@ -36,6 +32,7 @@ const RecuperarContrasena = () => {
             password = match.password;
             contra = password;
             console.log('La contraseña es: ', contra);
+            document.formulario.contra.value = contra;
             return true;
         }else{
             return false;
@@ -75,7 +72,7 @@ const RecuperarContrasena = () => {
                 <div style={{boxShadow: "4px 4px 26px -2px rgba(0,0,0,0.68)"}} className="col-md-8 mx-auto bg-light p-4">
                     <h2 className="text-center">Recuperar Contraseña</h2>
                     <p className="text-center">Estimado usuario, escriba su correo electronico para enviar un correo con su contraseña.</p>
-                    <form onSubmit={alSubmit}>
+                    <form id="formulario" onSubmit={alSubmit}>
                         <div className="form-outline mb-4">
                             <label className="form-label" for="emailRecuperar">
                             Email a recuperar
