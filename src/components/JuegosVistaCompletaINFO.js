@@ -25,8 +25,8 @@ const JuegosVistaCompletaINFO = () => {
 
   let imagen;
 
-  let inputComentario = React.useRef(null);
-  const [inputCalif, setinputCalif] = useState("");
+  const inputComentario = React.useRef(null);
+  const inputCalif = React.useRef(null);
   const idusuario = localStorage.getItem("idusuario");
 
   useEffect(() => {
@@ -120,8 +120,8 @@ const JuegosVistaCompletaINFO = () => {
     var altSubmit = async (ev) => {
       ev.preventDefault();
       console.log("Contribución enviada");
-      let comment = inputComentario.current.value;
-      let calificacione = parseInt(inputCalif)
+      const comment = inputComentario.current.value;
+      const calificacione = parseInt(inputCalif.current.value)
       await axios.post("https://backend-production-6d58.up.railway.app/api/contribucion/addContrib", {
         calif: calificacione,
         comentario: comment,
@@ -162,7 +162,7 @@ const JuegosVistaCompletaINFO = () => {
                 placeholder="Escriba una contribucion!"
                 required
               />
-              <select name="calif" id="califSelect" onChange={(ev) => setinputCalif(ev.target.value)} required>
+              <select name="calif" id="califSelect"  required>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
