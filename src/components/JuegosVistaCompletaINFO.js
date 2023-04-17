@@ -239,9 +239,6 @@ const JuegosVistaCompletaINFO = () => {
                 fontSize: "18px",
               }}
             >
-              <div style={{ paddingRight: "60px" }}>
-                <button>Borrar mensaje</button>
-              </div>
               <div>
                 <button onClick={altSubmit}>Enviar contribución</button>
               </div>
