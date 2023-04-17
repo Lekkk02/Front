@@ -162,7 +162,7 @@ const JuegosVistaCompletaINFO = () => {
                 placeholder="Escriba una contribucion!"
                 required
               />
-              <select name="calif" id="califSelect" ref={inputCalif} onChange={(ev) => setinputCalif(ev.target.value)} required>
+              <select name="calif" id="califSelect" onChange={(ev) => setinputCalif(ev.target.value)} required>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
