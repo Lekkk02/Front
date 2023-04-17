@@ -3,7 +3,7 @@ import images from "./assests/images";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import pdf from './ManualUsuario.pdf'
 import NavegacionAdmin, { IconosNav } from "./components/navegacionAdmin";
 
 import "./assests/styles/navbar.css";
@@ -33,6 +33,10 @@ const NavFuckingbar = () => {
       return alert("Rellene el campo de busqueda");
     }
     navigate(`/Busqueda/${busqueda}`);
+  }
+
+  const handleButtonClick = () => {
+    console.log("Generar manual de usuario");
   }
 
   return (
@@ -67,10 +71,8 @@ const NavFuckingbar = () => {
                 Biblioteca
               </Link>
             </li>
-            <li className="nav-item ">
-              <Link to="/busquedaA" className="nav-link">
-                Busqueda Avanzada
-              </Link>
+            <li className="nav-item">
+              <a className="nav-link" href={pdf} target='_blank'>Ayuda</a>
             </li>
             <NavegacionAdmin roleRequired="admin" />
           </ul>

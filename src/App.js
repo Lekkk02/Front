@@ -13,12 +13,10 @@ import Home from "./principal";
 import Biblioteca from "./Biblioteca";
 import Registro from "./resgistro";
 import Modal from "./modal";
-import BusquedaA from "./BusquedaAvanzada";
 import Actividad from "./registroActividad";
 import JuegoVistaCompleta from "./components/JuegosVistaCompleta";
 import testeo from "./components/JuegosVistaPrevia";
 import Busqueda from "./Busqueda";
-import ResultadoBusquedaA from "./ResultadoBusquedaA";
 import RecuperarContrasena from "./RecuperarContra";
 import UserProfile from "./userProfile";
 
@@ -41,7 +39,6 @@ export default class App extends Component {
           <Route path="/" exact element={<Home />} />
           <Route path="/Biblioteca" element={<Biblioteca />} />
           <Route path="/registro" Component={Registro} />
-          <Route path="/busquedaA" Component={BusquedaA} />
           <Route path='/Recuperacion' Component={RecuperarContrasena} />
           <Route
             path="/insertGame"
@@ -105,7 +102,6 @@ export default class App extends Component {
           <Route path="/testeo" Component={testeo} />
           //RUTAS BUSQUEDA
           <Route path="/Busqueda/:Resultado" Component={Busqueda} />
-          <Route path="/BusquedaA/:Resultado" Component={ResultadoBusquedaA} />
           <Route path="/Busqueda" Component={Busqueda} />
           ///RUTA PERFIL USUARIO
           <Route path="/userProfile" Component={UserProfile} />

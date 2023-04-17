@@ -31,14 +31,14 @@ const OpcionesNav = () => {
   function RolisAdmin() {
     if (roleRequired[0] === rol) {
       return (
-        <div>
+        <div className="navbar-nav mr-auto" >
           <li className="nav-item ">
             <Link to="/registroActividad" className="nav-link">
               Registro de Actividades
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/adminOption" className="nav-Link">
+            <Link to="/adminOption" className="nav-link">
               Administrar
             </Link>
           </li>
@@ -65,9 +65,46 @@ const IconosNav = () => {
     if (roleRequired[0] === rol) {
       return (
         <div>
-          <span class="material-symbols-outlined" id="user-icon">
+          <a href="/userProfile"><span class="material-symbols-outlined" id="user-icon">
             account_circle
-          </span>
+          </span></a>
+          <button
+            variant="primary"
+            data-toggle="modal"
+            data-target="#ModalCerrar"
+            style={{
+              padding: "0.25rem 0.5rem",
+              fontSize: "0.875rem",
+              lineHeight: "1.5",
+              borderRadius: "0.2rem",
+            }}
+          >
+            Cerrar sesión
+          </button>
+          <div className="modal" id="ModalCerrar">
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Cerrar Sesión</h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                  ></button>
+                </div>
+                <p>¿Estás seguro de cerrar la sesión?</p>
+                <button
+                  onClick={() => {
+                    localStorage.setItem("role", "");
+                    window.location.reload();
+                  }}
+                >
+                  Sí
+                </button>
+              </div>
+              <div className="modal-footer"></div>
+            </div>
+          </div>
         </div>
       );
     } else if (roleRequired[1] === rol) {

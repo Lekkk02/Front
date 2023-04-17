@@ -13,10 +13,9 @@ function Registro() {
   const [errorMsg, setErrorMsg] = useState("");
   let auth;
   let CheckRegg = async () => {
-    const usersData = await axios.get(
-      "https://backend-production-6d58.up.railway.app/api/users/getAllUsers"
-    );
+    const usersData = await axios.get("https://backend-production-6d58.up.railway.app/api/users/getAllUsers");
     let status = true;
+    let pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     let match = usersData.data.forEach((element) => {
       if (element.correo.toLowerCase() === email.toLowerCase()) {
         setErrorMsg("¡El correo ingresado ya existe!");
@@ -28,6 +27,10 @@ function Registro() {
         return false;
       } else if (password !== repassword) {
         setErrorMsg("¡Las contraseñas no coinciden!");
+        status = false;
+        return false;
+      } else if (!pattern.test(email.toLowerCase())) {
+        setErrorMsg("¡Correo inválido!");
         status = false;
         return false;
       }
@@ -42,14 +45,11 @@ function Registro() {
     console.log("AUTH IS ", res);
     if (res) {
       ev.preventDefault();
-      axios.post(
-        "https://backend-production-6d58.up.railway.app/api/users/addUser",
-        {
-          username: nickname,
-          password: password,
-          correo: email,
-        }
-      );
+      axios.post("https://backend-production-6d58.up.railway.app/api/users/addUser", {
+        username: nickname,
+        password: password,
+        correo: email,
+      });
       navigate("/", { replace: true });
       console.log("Se registró la cuenta");
     } else {
@@ -126,6 +126,7 @@ function Registro() {
                     className="form-control pl-2"
                     id="email"
                     placeholder="Correo"
+                    title="El correo tiene que tener un @ y un . para ser valido."
                     onChange={(ev) => setEmail(ev.target.value)}
                     value={email}
                     required
@@ -167,9 +168,7 @@ function Registro() {
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
-                  {isStrongPassword(password) &&
-                  isStrongPassword(repassword) &&
-                  password.length > 7 ? (
+                  {isStrongPassword(password) && password === repassword ? (
                     <button
                       style={{ marginTop: "15px" }}
                       className="btn btn-primary"

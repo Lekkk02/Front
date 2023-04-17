@@ -4,6 +4,8 @@ import images from "./assests/images";
 import axios from "axios";
 
 function Insertgame() {
+  var hoy = new Date();
+  hoy.setHours(0,0,0,0);
   let titulo = React.useRef(null);
   let descripcion = React.useRef(null);
   let puntuacione = React.useRef(null);
@@ -64,27 +66,6 @@ function Insertgame() {
               id="changeImg"
               src={images.gp2}
             />
-            <form
-              id="formImg"
-              method="POST"
-              action="/upload"
-              encType="multipart/form-data"
-            >
-              <div className="form-outline mb-4">
-                <input
-                  className="mt-3"
-                  alt="..."
-                  id="files"
-                  name="image"
-                  onChange={(ev) => {
-                    onFileSelected();
-                  }}
-                  type="file"
-                  accept="image/*"
-                  required
-                ></input>
-              </div>
-            </form>
           </div>
           <div className="col">
             <form id="formInfo">
@@ -153,12 +134,12 @@ function Insertgame() {
                 type="number"
                 placeholder="Puntuación del juego"
                 className="form-control pl-2"
-                name="precio"
-                id="precio"
+                name="puntuacion"
+                id="puntuacion"
                 min="0"
                 max="5"
                 step="1"
-                onkeypress="return event.charCode !=45"
+                onKeyPress={(event) => event.preventDefault()}
                 onpaste="return false;"
                 onDrop="return false;"
                 ref={puntuacione}
@@ -172,6 +153,7 @@ function Insertgame() {
                 className="form-control pl-2"
                 name="fechaLanzamiento"
                 id="fechaLanzamiento"
+                //onKeyPress={(event) => event.preventDefault()}
                 ref={fechaLanzamiento}
                 required
               />
@@ -185,6 +167,7 @@ function Insertgame() {
                 name="edad"
                 id="edad"
                 min="0"
+                onKeyPress={(event) => event.preventDefault()}
                 ref={edad}
                 required
               />
@@ -198,39 +181,88 @@ function Insertgame() {
               try {
                 e.preventDefault();
                 // Prevents HTML handling submission
-                const name = document.getElementById("titulo");
-                const files = document.getElementById("files");
-                const formData = new FormData();
-                // Creates empty formData object
-
                 // Appends value of text input
-                formData.append("image", files.files[0]);
+                //formData.append("image", files.files[0]);
                 // Appends value(s) of file input
                 // Post data to Node and Express server:
-                localStorage.setItem("imgNombre", files.files[0].name);
+                //localStorage.setItem("imgNombre", files.files[0].name);
 
-                fetch("https://backend-production-6d58.up.railway.app/upload", {
-                  method: "POST",
-                  body: formData, // Payload is formData object
-                })
-                  .then((res) => res.json())
-                  .then((data) => console.log(data));
-                let url = localStorage.getItem("imgNombre");
+
+                let url = categoria.current.value;
+                if (url === 'deportes'){
+                  url = images.deporte;
+                }else if(url === 'accion'){
+                  url = images.accion;
+                }else if(url === 'aventura'){
+                  url = images.aventura;
+                }else if(url === 'misterio'){
+                  url = images.misterio;
+                }else if(url === 'arcade'){
+                  url = images.arcade;
+                }else if(url === 'simulacion'){
+                  url = images.simulacion;
+                }else if(url === 'shooter'){
+                  url = images.shooter;
+                }else if(url === 'rpg'){
+                  url = images.rpg;
+                }else if(url === 'plataforma'){
+                  url = images.plataforma;
+                }
+
                 let mon = false;
 
-                axios.post(
-                  "https://backend-production-6d58.up.railway.app/api/games/addGame",
-                  {
-                    titulo: titulo.current.value,
-                    flanzamiento: fechaLanzamiento.current.value,
-                    urlImagen: url,
-                    descripcion: descripcion.current.value,
-                    puntuacion: puntuacione.current.value,
-                    genero: categoria.current.value,
-                    precio: precio.current.value,
-                    edadrating: edad.current.value,
+                const ComprobarJuego = async () => {
+                  const res = await axios.get("https://backend-production-6d58.up.railway.app/api/games/getAllGames", {
+                    responseType: "json",
+                  });
+                  const match = res["data"].find((element) => {
+                      return element.titulo === titulo.current.value;
+                  });
+                  if (match){
+                      return true;
+                  }else{
+                      return false;
                   }
-                );
+                };
+
+                const Comprobacion = async () => {
+                  let Verificar = new Date(fechaLanzamiento.current.value);
+                  if (titulo.current.value.trim() == ''){
+                    return alert('Rellene el campo de Titulo del juego');
+                  }else if(fechaLanzamiento.current.value == '' || Verificar > hoy){
+                    return alert('Inserte una fecha valida');
+                  }else if(descripcion.current.value == ''){
+                    return alert('Inserte una descripcion');
+                  }else if(puntuacione.current.value == ''){
+                    return alert('Agrege su puntuacion del juego');
+                  }else if (categoria.current.value == ''){
+                    return alert('Inserte una categoria');
+                  }else if (precio.current.value == '' || precio.current.value < 0){
+                    return alert('Inserte un precio valido del juego');
+                  }else if (edad.current.value == ''){
+                    return alert('Inserte la calificacion de contenido del juego');
+                  }
+                  let result = await ComprobarJuego();
+                  if (result == true){
+                    alert('El juego ya existe.');
+                  }else{
+                    axios.post("https://backend-production-6d58.up.railway.app/api/games/addGame", {
+                      titulo: titulo.current.value,
+                      flanzamiento: fechaLanzamiento.current.value,
+                      urlImagen: url,
+                      descripcion: descripcion.current.value,
+                      puntuacion: puntuacione.current.value,
+                      genero: categoria.current.value,
+                      precio: precio.current.value,
+                      edadrating: edad.current.value,
+                    }); 
+                    alert('El juego fue insertado');
+                    window.location.reload();
+                  }
+                }
+
+                Comprobacion();
+
               } catch (error) {
                 console.log(error);
               }

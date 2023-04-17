@@ -5,6 +5,7 @@ import '../src/assests/styles/navbar.css';
 import '../src/assests/styles/gameflex.css';
 import '../src/assests/styles/registro.css';
 
+
 class navAdmin extends Component {
     render(){
         return(
@@ -21,12 +22,14 @@ class navAdmin extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="menu">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active"><Link to='/adminStart' className="nav-link">Inicio</Link></li>
+                            <li className="nav-item active"><Link to='/' className="nav-link">Inicio</Link></li>
                             <li className="nav-item "><Link to='/Biblioteca' className="nav-link">Biblioteca</Link></li>
-                            <li className="nav-item "><Link to='/busquedaA' className="nav-link" >Busqueda Avanzada</Link></li>
                             <li className="nav-item "><Link to='/registroActividad' className="nav-link">Registro de Actividades</Link></li>
                             <li className='nav-item'><Link to='/adminOption' className='nav-link'>Administrar</Link></li>
-                            <li className='nav-item'><Link to='/generarReporte' className='nav-link'>Generar Reporte</Link></li>
+                            <li className='nav-item'>
+                            <a href='https://github.com/PichiGod/gametopic-pichi.git' className='nav-link' target="_blank" rel="noopener noreferrer">Respaldo</a>
+                            </li>
+                          
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             <li><p className="nav-link">

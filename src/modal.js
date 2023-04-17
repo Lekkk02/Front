@@ -88,12 +88,9 @@ function Modal() {
   }
 
   const checkUser = async () => {
-    const res = await axios.get(
-      "https://backend-production-6d58.up.railway.app/api/users/getAllUsers",
-      {
-        responseType: "json",
-      }
-    );
+    const res = await axios.get("https://backend-production-6d58.up.railway.app/api/users/getAllUsers", {
+      responseType: "json",
+    });
     const match = res["data"].find((element) => {
       return element.correo.toLowerCase() === email.toLowerCase();
     });
@@ -180,7 +177,9 @@ function Modal() {
         return false;
       }
     } else {
-      console.log("User wasn't found!");
+      window.alert(
+        "Usuario no registrado, por favor registrese para ingresar sesion"
+      );
       return false;
     }
     console.log("ROL DE SESIÓN: ", localStorage.getItem("role"));
@@ -219,6 +218,8 @@ function Modal() {
                   type="email"
                   id="form2Example1"
                   name="email"
+                  pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                  title="El correo tiene que tener un @ y un . para ser valido."
                   className="form-control pl-2"
                   onChange={(ev) => setEmail(ev.target.value)}
                   value={email}
@@ -262,7 +263,7 @@ function Modal() {
           <div className="modal-footer modal-footer-centered">
             <a href="/Recuperacion">¿Olvidaste tu contraseña?</a>
 
-            <a href="/registro">¿No tienes una cuenta? Regístrate aquí</a>
+            <a href="/Registro">¿No tienes una cuenta? Regístrate aquí</a>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import NavAdmin from "./navAdmin";
+import NavFuckingbar from "./nav";
 import images from './assests/images';
 import React,{ useState } from "react";
 import axios from "axios";
@@ -7,21 +8,21 @@ function BanUsuario(){
     const [idUser, setIdUser] = useState("");
 
     const [username, setUsername] = useState("");
-    const [correo, setCorreo] = useState(0);
+    const [correo, setCorreo] = useState('');
     const [strikes, setStrikes] = useState(0);
-    const [urlPerfil, setUrlPerfil] = useState("");
-
     function BuscarUser(){
         const getUserData = async () => {
-        const { data } = await axios.get(`/api/users/${idUser}`);
+        const { data } = await axios.get(`https://backend-production-6d58.up.railway.app/api/users/${idUser}`);
+            if(data.username === undefined){
+                return alert('El usuario no existe');
+            }
+
             setUsername(data.username);
             setCorreo(data.correo);
             setStrikes(data.strikes);
-            setUrlPerfil(data.imagenperfil);
+
         };
         getUserData();
-        var imagen = document.getElementById('userImg');
-        imagen.setAttribute('src', urlPerfil);
         var visible = document.getElementById('alerta');
         if (idUser === ""){
             visible.classList.remove("invisible");
@@ -34,7 +35,7 @@ function BanUsuario(){
 
     return(
       <div className="container-fluid">
-        <NavAdmin />
+        <NavFuckingbar />
         <div className="container mt-2">
             <label for='userid'>
                 Id del usuario a bannear
@@ -45,32 +46,57 @@ function BanUsuario(){
                 value={idUser}
                 onChange={(ev) => setIdUser(ev.target.value)}
             />
-            <button className="btn btn-primary mx-3" onClick={BuscarUser}>Buscar Juego</button>
+            <button className="btn btn-primary mx-3" onClick={BuscarUser}>Buscar Usuario</button>
 
             <div class="alert alert-warning mt-3 invisible" id='alerta' role="alert">El campo esta vacio!</div>
 
             <div className="d-flex row-flex aling-items-center mt-4">
                 <div className="d-flex flex-column p-2">
-                    <img id="userImg" alt="..." className="img-thumbnail" src={images.gp2} /> <br />
-                    <label for='userImg' className="text-center">Imagen de perfil</label>
+                    <img id="userImg" alt="..." className="img-thumbnail" src={images.gp2} />
                 </div>
 
                 <div className="d-flex flex-column p-2">
-                    <p className="mt-2">Nombre de Usuario:</p>
-                    <div id='cargarTitulo' className="my-1">{username}</div>
+                    <p className=""><b>Nombre de Usuario:</b></p>
+                    <p id='cargarTitulo' className="mx-2">{username}</p>
 
-                    <p className="mt-2">Correo del usuario:</p>
-                    <div id='cargarCategoria1' className="my-1">{correo}</div>
+                    <p className=""><b>Correo del usuario:</b></p>
+                    <p id='cargarCategoria1' className="mx-2">{correo}</p>
 
-                    <p className="mt-2">Contribuciones realizadas:</p>
-                    <div id='cargarContribuciones' className="my-1">{strikes}</div>
-
-                    
+                    <div className=" d-flex row-flex" id='cargarSansiones'>
+                        <p className="mt-3"><b>Sansiones:</b></p>
+                        <h2 className="visible mx-2 mt-2">{strikes}</h2>
+                    </div>
 
                 </div>
             </div>
             <div className="d-flex row-flex my-3">
-                <button className="btn btn-block btn-primary btn-info">BANNEAR DE LA PLATAFORMA</button>
+                <button 
+                    className="btn btn-block btn-primary btn-info"
+                    onClick={(e) => {
+                        try{
+                            e.preventDefault();
+
+                            function check(){
+                                const GetUserData = async () => {
+                                    const { data } = await axios.get(`https://backend-production-6d58.up.railway.app/api/users/${idUser}`);
+                                        if (data.username === undefined){
+                                            e.preventDefault();
+                                            return alert('El usuario no existe');
+                                        }else{
+                                            axios.put(`https://backend-production-6d58.up.railway.app/api/users/ban/${idUser}`)
+                                            alert('El usuario ha sido banneado');
+                                            window.location.reload();
+                                        }
+                                };
+                                GetUserData();
+                            }
+                            check();
+                        }catch(error){
+                            e.preventDefault();
+                            console.log(error);
+                        }
+                    }}
+                    >BANNEAR DE LA PLATAFORMA</button>
             </div>
         </div>
       </div>  

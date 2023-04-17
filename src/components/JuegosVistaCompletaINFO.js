@@ -3,6 +3,7 @@ import React, { useEffect, useState, Component } from "react";
 import { useParams } from "react-router-dom";
 import "../assests/styles/gameflex.css";
 import { Link } from "react-router-dom";
+import images from "../assests/images";
 
 ////////////////////////////////////// CONTRIBUCION
 
@@ -22,22 +23,23 @@ const JuegosVistaCompletaINFO = () => {
   const [puntuacion, setpuntuacion] = useState(0);
   const [genero, setgenero] = useState("");
 
+  let imagen;
+
   let inputComentario = React.useRef(null);
   let inputCalif = React.useRef(null);
   const idusuario = localStorage.getItem("idusuario");
 
   useEffect(() => {
     const getGameData = async () => {
-      const { data } = await axios.get(
-        `https://backend-production-6d58.up.railway.app/api/games/${id}`
-      );
-      setTitle(data.nombre);
+      const { data } = await axios.get(`https://backend-production-6d58.up.railway.app/api/games/${id}`);
+      setTitle(data.titulo);
       setprice(data.precio);
       setdescription(data.descripcion);
       setpuntuacion(data.puntuacion);
-      setgenero(data.nombregenero);
+      setgenero(data.genero);
     };
     getGameData();
+    
   }, []);
   const Props = `{
         "roleRequired":["ADMIN", "USER"]
@@ -45,6 +47,25 @@ const JuegosVistaCompletaINFO = () => {
   const Props1 = `{
         "contribucionExistente": true
     }`;
+  if (genero === 'deportes'){
+    imagen = images.deporte;
+  }else if(genero === 'accion'){
+    imagen = images.accion;
+  }else if(genero === 'aventura'){
+    imagen = images.aventura;
+  }else if(genero === 'misterio'){
+    imagen = images.misterio;
+  }else if(genero === 'arcade'){
+    imagen = images.arcade;
+  }else if(genero === 'simulacion'){
+    imagen = images.simulacion;
+  }else if(genero === 'shooter'){
+    imagen = images.shooter;
+  }else if(genero === 'rpg'){
+    imagen = images.rpg;
+  }else if(genero === 'plataforma'){
+    imagen = images.plataforma;
+  }
 
   const pprops = JSON.parse(Props);
 
@@ -79,9 +100,7 @@ const JuegosVistaCompletaINFO = () => {
   };
 
   const getContr = async () => {
-    const data = await axios.get(
-      `https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`
-    );
+    const data = await axios.get(`https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`);
     return data;
   };
   const checkUser = async () => {
@@ -102,15 +121,12 @@ const JuegosVistaCompletaINFO = () => {
       ev.preventDefault();
       console.log("Contribución enviada");
       let calificacion = parseInt(inputCalif.current.value);
-      await axios.post(
-        "https://backend-production-6d58.up.railway.app/api/contribucion/addContrib",
-        {
-          calif: calificacion,
-          comentario: inputComentario.current.value,
-          idusuario: idusuario,
-          idJuego: id,
-        }
-      );
+      await axios.post("https://backend-production-6d58.up.railway.app/api/contribucion/addContrib", {
+        calif: calificacion,
+        comentario: inputComentario.current.value,
+        idusuario: idusuario,
+        idJuego: id,
+      });
       window.location.reload();
     };
     const AuthContribucion = () => {
@@ -190,9 +206,7 @@ const JuegosVistaCompletaINFO = () => {
     useEffect(() => {
       //const Data = async () => {
       /*const { data } = await*/ axios
-        .get(
-          `https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`
-        )
+        .get(`https://backend-production-6d58.up.railway.app/api/contribucion/getGameContrib/${id}`)
         .then((res) => {
           console.log(res.data);
           setContribucion(res.data);
@@ -286,7 +300,7 @@ const JuegosVistaCompletaINFO = () => {
             alt="..."
           />
         </Link>
-        <b style={{ fontSize: "38px" }}>{nombre}</b>
+        <b className="mx-3" style={{ fontSize: "38px" }}>{nombre}</b>
         <a href="https://www.epicgames.com/site/es-ES/home" target="blank">
           <img
             style={{
@@ -316,7 +330,7 @@ const JuegosVistaCompletaINFO = () => {
         <div className="game-container-View">
           <img
             className="game-image-FullView"
-            src={require(`../assests/img/marioParty7.png`)}
+            src={imagen}
             alt="..."
           />
           <div className="game-text-LeftView">

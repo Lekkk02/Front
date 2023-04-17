@@ -2,12 +2,10 @@ import React, { useState } from "react";
 
 import Navbar from "./nav";
 import Contribuciones from "./comActividad/Contribuciones";
-import Sanciones from "./comActividad/Sanciones";
-import Baneos from "./comActividad/Baneos";
-import GestionMultimedia from "./comActividad/Multimedia";
-import {contribuciones,sanciones,baneos,gestionMultimedia} from "./comActividad/datos";
 import Nav from "react-bootstrap/Nav";
+
 import "../src/assests/styles/registroActividad.css";
+import "./assests/styles/gameflex.css";
 
 function RegistroActividad() {
   const [activeTab, setActiveTab] = useState("contribuciones");
@@ -15,51 +13,14 @@ function RegistroActividad() {
   return (
     <div>
       <Navbar />
-      <div className="container tabla">
-        <Nav className="nav"
-          variant="tabs"
-          activeKey={activeTab}
-          onSelect={(selectedKey) => setActiveTab(selectedKey)}
-        >
-          <Nav.Item>
-            <Nav.Link eventKey="contribuciones">Contribuciones</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="sanciones">Sanciones</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="baneos">Baneos</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="gestionMultimedia">Gestión Multimedia</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </div>
-
       <div className="container fondo">
-        {activeTab === "contribuciones" && (
-          <Contribuciones contribuciones={contribuciones} />
-        )}
-        {activeTab === "sanciones" && <Sanciones sanciones={sanciones} />}
-        {activeTab === "baneos" && <Baneos baneos={baneos} />}
-        {activeTab === "gestionMultimedia" && (
-          <GestionMultimedia gestionMultimedia={gestionMultimedia} />
-        )}
-        {activeTab !== "comentarios" &&
-          activeTab !== "sanciones" &&
-          activeTab !== "baneos" &&
-          activeTab !== "gestionMultimedia" && 
-          <p></p>}
+          <Contribuciones />
       </div>
     </div>
   );
 }
 
 export default RegistroActividad;
-
-
-
-
 
 
 
